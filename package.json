@@ -1,0 +1,21 @@
+{
+  "name": "GraphQl_FSW_App",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "initApp": "cd backend && npm i && cd ../frontend && npm i",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AminesCodes/GraphQl_Learning.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AminesCodes/GraphQl_Learning/issues"
+  },
+  "homepage": "https://github.com/AminesCodes/GraphQl_Learning#readme"
+}
