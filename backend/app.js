@@ -20,7 +20,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/graphql', graphqlHTTP({
-    schema
+    schema,
+    graphiql: true
 }));
 
-module.exports = app;
+
+
+const port = process.env.PORT || '3131'
+app.listen(port, () => {
+    console.log('Listening on port', port);
+})
