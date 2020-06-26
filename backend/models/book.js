@@ -1,6 +1,6 @@
 // book model for the MangoDb database (not to be confused with the book schema for GraphQL)
 
-const mongoose = require(mongoose);
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const bookSchema = new Schema({
@@ -9,4 +9,4 @@ const bookSchema = new Schema({
     authorId: String
 });
 
-module.exports = mongoose.model('Books', bookSchema);
+module.exports = mongoose.model('Book', bookSchema);

@@ -1,6 +1,6 @@
 // Author model for the MangoDb database (not to be confused with the author schema for GraphQL)
 
-const mongoose = require(mongoose);
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const authorSchema = new Schema({
@@ -8,4 +8,4 @@ const authorSchema = new Schema({
     age: Number
 });
 
-module.exports = mongoose.model('Authors', authorSchema);
+module.exports = mongoose.model('Author', authorSchema);
