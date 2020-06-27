@@ -1,37 +1,23 @@
-import React, { useState, useEffect} from 'react';
-import { gql } from 'apollo-boost'; // bind/parse graphQl to Javascript
-import { useQuery } from '@apollo/react-hooks'
+import React from 'react';
+// import React, { useState, useEffect} from 'react';
+import { useQuery } from '@apollo/react-hooks';
 
-const getBooksQuery = gql`
-    {
-        books {
-            id
-            name
-            genre
-            author {
-                id
-                name
-                books {
-                    name
-                    genre
-                }
-            }
-        }
-    }
+import AddBookForm from './AddBookForm';
+import { getBooksQuery } from '../queries/queries'
 
-`
 
 export default function BookList() {
-    const [ books, setBooks ] = useState([]);
+    // const [ books, setBooks ] = useState([]);
 
     const { loading, error, data } = useQuery(getBooksQuery);
     console.log(data)
 
-    useEffect(() => {
-        if (!loading && data) {
-            setBooks(data.books);
-        }
-    }, [loading]);
+    // useEffect(() => {
+    //     if (!loading && data) {
+    //         setBooks(data.books);
+    //     }
+    //     // eslint-disable-next-line 
+    // }, [loading]);
     
     if (error) {
         return <p>Sorry, something went wrong!</p>
@@ -39,13 +25,19 @@ export default function BookList() {
 
 
     return (
+        <>
         <ul>
             Books:
             {
-                books.length
-                ?   books.map(book => <li key={book.id}>{book.name} by {book.author.name}</li>)
+                !loading
+                ?   data && data.books
+                    ? data.books.map(book => <li key={book.id}>{book.name} by {book.author.name}</li>)
+                    : null
                 :   <p>Loading...</p>
             }
         </ul>
+
+        <AddBookForm />
+        </>
     )
 }
