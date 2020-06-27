@@ -1,16 +1,18 @@
-import React from 'react';
+// import React from 'react';
 // import React, { useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
 import AddBookForm from './AddBookForm';
+import BookDetails from './BookDetails';
 import { getBooksQuery } from '../queries/queries'
 
 
 export default function BookList() {
     // const [ books, setBooks ] = useState([]);
+    const [ targetBook, setTargetBook ] = useState('');
 
-    const { loading, error, data } = useQuery(getBooksQuery);
-    console.log(data)
+    const { loading, error, data, refetch } = useQuery(getBooksQuery);
 
     // useEffect(() => {
     //     if (!loading && data) {
@@ -31,11 +33,23 @@ export default function BookList() {
             {
                 !loading
                 ?   data && data.books
-                    ? data.books.map(book => <li key={book.id}>{book.name} by {book.author.name}</li>)
+                    ? data.books.map(book => <li key={book.id} onClick={() => setTargetBook(book.id)}>{book.name} by {book.author.name}</li>)
                     : null
                 :   <p>Loading...</p>
             }
         </ul>
+
+        {/* <button onClick={refetch}>Refresh List</button> */}
+        <button onClick={() => refetch()}>Refresh List</button>
+
+        {
+            targetBook
+            ?   <>
+                    <button onClick={() => setTargetBook('')}>Close</button>
+                    <BookDetails id={targetBook} />
+                </>
+            :   null
+        }
 
         <AddBookForm />
         </>

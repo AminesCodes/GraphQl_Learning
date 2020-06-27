@@ -10,7 +10,7 @@ export default function AddBookForm() {
     const [ authorId, setAuthorId ] = useState('');
 
     const { loading, error, data } = useQuery(getAuthorsQuery);
-    console.log(data)
+    // console.log(data)
 
     useEffect(() => {
         if (!loading && data) {
@@ -27,10 +27,10 @@ export default function AddBookForm() {
         e.preventDefault();
 
         addBook({ 
-            variables: { name: name, genre: genre , authorId: authorId},
+            variables: { name, genre , authorId},
             refetchQueries: [{query: getBooksQuery}]
         });
-        console.log(1000, response)
+        // console.log(1000, response)
     }
 
 
