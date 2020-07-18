@@ -21,7 +21,8 @@ export default function AddBookForm() {
     
 
     // Mutation & Handle Submit
-    const [ addBook, response ] = useMutation(postAuthorQuery);
+    // const [ addBook, response ] = useMutation(postAuthorQuery);
+    const [ addBook ] = useMutation(postAuthorQuery);
 
     const handleAddBook = (e) => {
         e.preventDefault();

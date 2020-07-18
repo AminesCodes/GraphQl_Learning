@@ -5,29 +5,23 @@ import { getSingleQuery } from '../queries/queries'
 
 
 export default function BookDetails(props) {
-    // const [ books, setBooks ] = useState([]);
     const bookId = props.id;
-    // const id = props.id;
     let book = null;
 
-    // if (bookId) {
-        const { loading, error, data } = useQuery(getSingleQuery, { variables: {id: bookId} });
-        // const { loading, error, data } = useQuery(getSingleQuery, { variables: { id } });
-        // const { loading, error, data } = useQuery(GET_DOG_PHOTO, { variables: { breed }, });
-        console.log(data)
-        if (!loading && data) {
-            book = data.book;
-        }
-        
-        if (error) {
-            console.dir(error)
-            return <p>Sorry, something went wrong!</p>
-        }
+    const { loading, error, data } = useQuery(getSingleQuery, { variables: {id: bookId} });
+    console.log(data)
+    if (!loading && data) {
+        book = data.book;
+    }
     
-        if (loading) {
-            return <p>Loading...</p>
-        }
-    // }
+    if (error) {
+        console.dir(error)
+        return <p>Sorry, something went wrong!</p>
+    }
+
+    if (loading) {
+        return <p>Loading...</p>
+    }
 
 
     return (
